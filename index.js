@@ -115,7 +115,7 @@ function sensor2() {
                 update(sensor.illuminance);
             });
             sensor.start();
-            if (illuminance = 0) { //テストここから
+            if (sensor.illuminance = 0) { //テストここから
                 var testtxt = document.getElementById("testtxt");
                 testtxt.innerHTML = "真っ暗";
             } //テストここまで
