@@ -103,10 +103,10 @@ function sensor2() {
     function update(illuminance) {
         console.log("環境光センサー");
         document.getElementById("value").innerHTML = illuminance + " lux";
-        if(illuminance = 0){ //テストここから
+        //if(illuminance = 0){ //テストここから
             var testtxt= document.getElementById("testtxt");
             txt.innerHTML = "真っ暗";
-        } //テストここまで
+        //} //テストここまで
     }
     if ("AmbientLightSensor" in window) {
         try {
