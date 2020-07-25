@@ -103,10 +103,10 @@ function sensor2() {
     function update(illuminance) {
         console.log("環境光センサー");
         document.getElementById("value").innerHTML = illuminance + " lux";
-        if(illuminance = 0){ //テストここから
-            var testtxt= document.getElementById("testtxt");
-            testtxttxt.innerHTML = "真っ暗";
-        } //テストここまで
+        //        if(illuminance = 0){ //テストここから
+        //            var testtxt= document.getElementById("testtxt");
+        //            testtxttxt.innerHTML = "真っ暗";
+        //        } //テストここまで
     }
     if ("AmbientLightSensor" in window) {
         try {
@@ -115,6 +115,10 @@ function sensor2() {
                 update(sensor.illuminance);
             });
             sensor.start();
+            if (illuminance = 0) { //テストここから
+                var testtxt = document.getElementById("testtxt");
+                testtxt.innerHTML = "真っ暗";
+            } //テストここまで
         } catch (e) {
             console.error(e);
         }
