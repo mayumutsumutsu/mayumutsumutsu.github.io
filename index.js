@@ -104,8 +104,8 @@ function sensor() {
 function sensor2() {
     function update(illuminance) { //update関数は毎フレーム実行＆illuminanceは関数
         console.log("環境光センサー"); //確認用
-        document.getElementById("value").innerHTML = illuminance + " lux"; //html内に明るさの文字列
         if (illuminance == 0) { //明るさが0なら
+            document.getElementById("value").innerHTML = illuminance + " lux"; //html内に明るさの文字列
             var testtxt = document.getElementById("testtxt"); //html内のtesttxt内に真っ暗を表示
             testtxttxt.innerHTML = "真っ暗";
         } //テストここまで
