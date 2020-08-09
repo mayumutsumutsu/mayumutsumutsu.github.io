@@ -1,5 +1,5 @@
 console.log("index.js 読み込みOK");
-var score = 0;
+var score = 0; //cookieの値(ここが変わると姿が変わる)
 //undifinedだとボタンクリックでNaN
 
 var img = document.getElementById("image_place")
@@ -80,6 +80,8 @@ var alpha = 0;
 var beta = 0;
 var gamma = 0;
 
+var num = 0;
+
 function save() {
     saveHour = Number(select_Hour.value); //起床時間をsaveHourに格納
     saveMin = Number(select_Min.value); //起床時間をsaveMinrに格納
@@ -100,27 +102,23 @@ function sensor() {
 
 //環境光センサー
 function sensor2() {
-    function update(illuminance) {
-        console.log("環境光センサー");
-        document.getElementById("value").innerHTML = illuminance + " lux";
-        //        if(illuminance = 0){ //テストここから
-        //            var testtxt= document.getElementById("testtxt");
-        //            testtxttxt.innerHTML = "真っ暗";
-        //        } //テストここまで
+    function update(illuminance) { //update関数は毎フレーム実行＆illuminanceは関数
+        console.log("環境光センサー"); //確認用
+        document.getElementById("value").innerHTML = illuminance + " lux"; //html内に明るさの文字列
+        if (illuminance == 0) { //明るさが0なら
+            var testtxt = document.getElementById("testtxt"); //html内のtesttxt内に真っ暗を表示
+            testtxttxt.innerHTML = "真っ暗";
+        } //テストここまで
     }
-    if ("AmbientLightSensor" in window) {
+    if ("AmbientLightSensor" in window) { //もし端末が"AmbientLightSensor"に対応していたら
         try {
-            var sensor = new AmbientLightSensor();
-            sensor.addEventListener("reading", function (event) {
-                update(sensor.illuminance);
+            var sensor = new AmbientLightSensor(); //関数宣言
+            sensor.addEventListener("reading", function (event) { //センサーの値を読み取る
+                update(sensor.illuminance); //明るさを毎フレーム実行
             });
             sensor.start();
-            if (sensor.illuminance = 0) { //テストここから
-                var testtxt = document.getElementById("testtxt");
-                testtxt.innerHTML = "真っ暗";
-            } //テストここまで
-        } catch (e) {
-            console.error(e);
+        } catch (e) { //センサーが無かったら
+            console.error(e); //エラー
         }
     }
 }
