@@ -79,8 +79,7 @@ var alarm = document.getElementById("alarm");
 var alpha = 0;
 var beta = 0;
 var gamma = 0;
-
-var num = 0;
+var count; //illuminanceが0になった時にカウントされる関数
 
 function save() {
     saveHour = Number(select_Hour.value); //起床時間をsaveHourに格納
@@ -104,10 +103,9 @@ function sensor() {
 function sensor2() {
     function update(illuminance) { //update関数は毎フレーム実行＆illuminanceは関数
         console.log("環境光センサー"); //確認用
+        document.getElementById("value").innerHTML = illuminance + " lux"; //html内に明るさの文字列
         if (illuminance == 0) { //明るさが0なら
-            document.getElementById("value").innerHTML = illuminance + " lux"; //html内に明るさの文字列
-            var testtxt = document.getElementById("testtxt"); //html内のtesttxt内に真っ暗を表示
-            testtxttxt.innerHTML = "真っ暗";
+            count++; //カウント
         } //テストここまで
     }
     if ("AmbientLightSensor" in window) { //もし端末が"AmbientLightSensor"に対応していたら
@@ -147,22 +145,15 @@ function stop() {
     ring = function () {
         return false; //処理を止める
     };
-    //window.stop();
-    //    (function(){
-    //        sensor();
-    //    })();
-    //    sensor = function () {
-    //        return false;
-    //    };
-    //    sensor2 = function () {
-    //        return false;
-    //    };
 };
 
 function displayDate() {
     //ジャイロセンサー値表示
     var txt = document.getElementById("txt");
     txt.innerHTML = "alpha:" + alpha + "<br>" + "beta:" + beta + "<br>" + "gamma:" + gamma;
+    
+    var txt2 = document.getElementById("txt2");
+    txt2.innerHTML = count;
 
     setInterval('displayDate()', 10000); //displayDataを10秒間に1回動かす
     //1秒間に1回だとプログラムがめちゃくちゃ重くなる
