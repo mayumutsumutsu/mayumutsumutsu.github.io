@@ -60,7 +60,7 @@ function clock() { //時計つくる
         console.log("進化"); //確認用
     }
 }
-setInterval('clock()', 1000); //clockを1秒間に実行する
+setInterval('clock()', 1000); //clockを1秒間に1回実行する
 
 //ボタン作成
 var img_2 = document.getElementById("botan_place")
@@ -79,7 +79,7 @@ var alarm = document.getElementById("alarm");
 var alpha = 0;
 var beta = 0;
 var gamma = 0;
-var count = 0; //illuminanceが0になった時にカウントされる関数
+var count = 0; //illuminanceが0になった時にカウントされる関数(0を書かないとNaN表記)
 
 function save() {
     saveHour = Number(select_Hour.value); //起床時間をsaveHourに格納
@@ -106,6 +106,7 @@ function sensor2() {
         document.getElementById("value").innerHTML = illuminance + " lux"; //html内に明るさの文字列
         if (illuminance == 0) { //明るさが0なら
             count++; //カウント
+            //ここだけだと毎秒実行されない
         }
     }
     if ("AmbientLightSensor" in window) { //もし端末が"AmbientLightSensor"に対応していたら
@@ -120,6 +121,8 @@ function sensor2() {
         }
     }
 }
+
+setInterval('sensor2()',1000);
 
 //音を鳴らしたら
 function ring() {
