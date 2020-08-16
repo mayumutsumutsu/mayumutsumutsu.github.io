@@ -79,7 +79,7 @@ var alarm = document.getElementById("alarm");
 var alpha = 0;
 var beta = 0;
 var gamma = 0;
-var count; //illuminanceが0になった時にカウントされる関数
+var count = 0; //illuminanceが0になった時にカウントされる関数
 
 function save() {
     saveHour = Number(select_Hour.value); //起床時間をsaveHourに格納
@@ -106,7 +106,7 @@ function sensor2() {
         document.getElementById("value").innerHTML = illuminance + " lux"; //html内に明るさの文字列
         if (illuminance == 0) { //明るさが0なら
             count++; //カウント
-        } //テストここまで
+        }
     }
     if ("AmbientLightSensor" in window) { //もし端末が"AmbientLightSensor"に対応していたら
         try {
