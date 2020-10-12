@@ -142,8 +142,12 @@ function stop() {
     alarm.pause(); //音停止
     alarm.currentTime = 0;
     console.log("stop click");
-    score++;
-    document.cookie = score;
+    if(count < 1){
+        score++;
+        document.cookie = score;
+    }
+//    score++;
+//    document.cookie = score;
     //cookieに保存
     ring = function () {
         return false; //処理を止める
