@@ -142,7 +142,7 @@ function stop() {
     alarm.pause(); //音停止
     alarm.currentTime = 0;
     console.log("stop click");
-    if(count >= 1){ //countが1以上であれば
+    if(count >= 10){ //countが1以上であれば
         score++; //scoreに足す
         document.cookie = score; //cookieに保存
     }
