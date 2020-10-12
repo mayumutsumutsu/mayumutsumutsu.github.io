@@ -55,7 +55,7 @@ function clock() { //時計つくる
             if (random == 5) document.getElementById("text").innerHTML = "最適な睡眠時間は7時間前後と言われているよ";
         };
     }
-    if (document.cookie <= 1) { //キャラクターの見た目のif文
+    if (document.cookie >= 0) { //キャラクターの見た目のif文
         img.src = "image/shinka.png";
         console.log("進化"); //確認用
     }
@@ -122,7 +122,7 @@ function sensor2() {
     }
 }
 
-setInterval('sensor2()',1000);
+setInterval('sensor2()', 1000);
 
 //音を鳴らしたら
 function ring() {
@@ -142,13 +142,17 @@ function stop() {
     alarm.pause(); //音停止
     alarm.currentTime = 0;
     console.log("stop click");
-    if(count <= 1){ //count(暗くなった時間)が1秒以上の場合
-        score++; //scoreの値を足す
-        document.cookie = score; //cookieに保存
+    //    if(count <= 1){ //count(暗くなった時間)が1秒以上の場合
+    //        score++; //scoreの値を足す
+    //        document.cookie = score; //cookieに保存
+    //    }
+    if (count >= 1) {
+        score++;
+        document.cookie = score;
+        //cookieに保存
     }
-//    score++;
+//    score = score + 1;
 //    document.cookie = score;
-    //cookieに保存
     ring = function () {
         return false; //処理を止める
     };
@@ -158,7 +162,7 @@ function displayDate() {
     //ジャイロセンサー値表示
     var txt = document.getElementById("txt");
     txt.innerHTML = "alpha:" + alpha + "<br>" + "beta:" + beta + "<br>" + "gamma:" + gamma;
-    
+
     var txt2 = document.getElementById("txt2");
     txt2.innerHTML = count;
 
