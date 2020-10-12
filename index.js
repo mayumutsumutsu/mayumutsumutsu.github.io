@@ -55,7 +55,7 @@ function clock() { //時計つくる
             if (random == 5) document.getElementById("text").innerHTML = "最適な睡眠時間は7時間前後と言われているよ";
         };
     }
-    if (document.cookie >= 0) { //キャラクターの見た目のif文
+    if (document.cookie == 1) { //キャラクターの見た目のif文
         img.src = "image/shinka.png";
         console.log("進化"); //確認用
     }
