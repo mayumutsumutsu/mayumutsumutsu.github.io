@@ -142,9 +142,9 @@ function stop() {
     alarm.pause(); //音停止
     alarm.currentTime = 0;
     console.log("stop click");
-    if(count < 1){
-        score++;
-        document.cookie = score;
+    if(count <= 1){ //count(暗くなった時間)が1秒以上の場合
+        score++; //scoreの値を足す
+        document.cookie = score; //cookieに保存
     }
 //    score++;
 //    document.cookie = score;
