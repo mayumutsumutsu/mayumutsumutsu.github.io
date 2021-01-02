@@ -103,6 +103,8 @@ function clock() {
 }
 setInterval('clock()', 1000); //clockを1秒間に1回実行する
 
+var test = document.getElementById("test").innerHTML = score;
+
 //ボタン作成
 var img_2 = document.getElementById("botan_place") //画像読み込み
 img_2.src = "image/botan.png"; //画像配置
