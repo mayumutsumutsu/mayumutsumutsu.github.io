@@ -20,7 +20,7 @@ function clock() {
     var Min = set(now.getMinutes()); // 分をnowMinに入れる
     var time = Hour + ":" + Min; //現在時刻を表示する変数 
 
-    if (document.cookie == 0 || document.cookie == 1 || document.cookie == 2 || document.cookie == 3 || document.cookie == 4 || document.cookie == -1) {
+    if (document.cookie == 0 || document.cookie == 1 || document.cookie == 2 || document.cookie == 3 || document.cookie == 4 || document.cookie == -1 && Hour > 7 && Hour < 23) {
         //cookieの値が-1～4かつ、7時～23時だった時
         img.src = "image/1.png"; //キャラクター画像を設定
         image_place.onclick = function () { //画像がクリックされたら
@@ -33,6 +33,16 @@ function clock() {
             if (random == 3) document.getElementById("text").innerHTML = "お風呂の温度は40℃前後が理想的♪身体が温まるよ";
             if (random == 4) document.getElementById("text").innerHTML = "ブルーライトは睡眠の天敵!寝る1時間前にはなるべく見ない様に!";
         };
+    } else { //cookieの値が0かつ、現在時刻が23～7時だった時
+        //ここ動いてない
+        img.src = "image/sleep.png"; //キャラクター画像を設定
+        random = Math.floor(Math.random() * 5);
+        //1～5までの数字をランダムに生成(Math.floorで小数点以下は切り捨て)
+        if (random == 0) document.getElementById("text").innerHTML = "寝る前の飲み物には白湯がベスト!";
+        if (random == 1) document.getElementById("text").innerHTML = "夜ご飯は寝る3時間前に済ませておく事が理想だよ♪";
+        if (random == 2) document.getElementById("text").innerHTML = "覚醒効果のあるカフェインは寝る前には要注意!";
+        if (random == 3) document.getElementById("text").innerHTML = "お風呂の温度は40℃前後が理想的♪身体が温まるよ";
+        if (random == 4) document.getElementById("text").innerHTML = "ブルーライトは睡眠の天敵!寝る1時間前にはなるべく見ない様に!";
     };
     if (document.cookie == 5 || document.cookie == 6 || document.cookie == 7 && Hour >= 7 && Hour < 23) {
         //cookieの値が5～7かつ、7時～23時だった時
@@ -92,8 +102,6 @@ function clock() {
     }
 }
 setInterval('clock()', 1000); //clockを1秒間に1回実行する
-
-var test = document.getElementById("test").innerHTML = score;
 
 //ボタン作成
 var img_2 = document.getElementById("botan_place") //画像読み込み
@@ -175,6 +183,8 @@ function stop() { //音を止める関数
         return false; //処理を止める
     };
 };
+
+document.getElementById("test").innerHTML = score;
 
 function re() {
     location.replace('http://mayumutsumutsu.github.io/index.html');
