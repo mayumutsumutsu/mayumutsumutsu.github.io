@@ -1,8 +1,5 @@
-var score = 0; //cookieの値(ここが変わると姿が変わる)
-//undifinedだとボタンクリックでNaN
-
-var img = document.getElementById("image_place")
-//img関数にimage_placeを設定
+var score = 0;
+var count = 0;
 
 function set(num) { //setオブジェクトでnumを格納
     // 桁数が1桁だったら先頭に0を加えて2桁に調整する
@@ -15,56 +12,35 @@ function set(num) { //setオブジェクトでnumを格納
     return ret; //ret関数を返す
 }
 
-function clock() { //時計を作る関数
+var img = document.getElementById("image_place")
+//img関数にimage_placeを設定
+//キャラクター画像設定
+
+function clock() {
     var now = new Date(); //現在日時の取得
     var Hour = set(now.getHours()); // 時間をnowHourに入れる
     var Min = set(now.getMinutes()); // 分をnowMinに入れる
-    var char = Hour + ":" + Min; //現在時刻を表示する変数
+    var time = Hour + ":" + Min; //現在時刻を表示する変数 
 
-    if (Hour >= 6 && Hour < 22) { //現在時刻が6時～22時の時
-        img.src = "image/okiru.png"; //キャラクターが起きる
-        console.log("scoreは" + score); //確認用
-        console.log("cookieの値は" + document.cookie); //確認用
-        image_place.onclick = function () { //画像がクリックされたら
-            img.src = "image/okiru2.png"; //口が動く
-            random = Math.floor(Math.random() * 5);
-            //1～5までの数字をランダムに生成(Math.floorで小数点以下は切り捨て)
-            if (random == 0) document.getElementById("text").innerHTML = "寝る2～3時間前にお風呂に入っておくとぐっすり寝られるよ!";
-            if (random == 1) document.getElementById("text").innerHTML = "お昼寝は午後2時に20分だけ寝るのがベストだよ!寝すぎには気を付けて!";
-            if (random == 2) document.getElementById("text").innerHTML = "適度な運動は睡眠にも身体にも◎!でも激しい運動はNG!";
-            if (random == 3) document.getElementById("text").innerHTML = "寝る前にカフェインを摂るのは睡眠に悪いよ!気を付けて!";
-            if (random == 4) document.getElementById("text").innerHTML = "朝は太陽の光を浴びると、体内時計のスイッチがオンになるよ!";
-            if (random == 5) document.getElementById("text").innerHTML = "最適な睡眠時間は7時間前後と言われているよ";
-        };
-    } else { //現在時刻が22時～6時の時
-        img.src = "image/sleep.png";
-        console.log(char); //時間確認用
-        image_place.onclick = function () {
-            random = Math.floor(Math.random() * 5);
-            if (random == 0) document.getElementById("text").innerHTML = "寝る2～3時間前にお風呂に入っておくとぐっすり寝られるよ!";
-            if (random == 1) document.getElementById("text").innerHTML = "お昼寝は午後2時に20分だけ寝るのがベスト!";
-            if (random == 2) document.getElementById("text").innerHTML = "適度な運動は睡眠にも身体にも◎!でも激しい運動はNG!";
-            if (random == 3) document.getElementById("text").innerHTML = "寝る前にカフェインを摂るのは睡眠に悪いよ!気を付けて!";
-            if (random == 4) document.getElementById("text").innerHTML = "朝は太陽の光を浴びると、体内時計のスイッチがオンになるよ!";
-            if (random == 5) document.getElementById("text").innerHTML = "最適な睡眠時間は7時間前後と言われているよ";
-        };
-    }
-    if (document.cookie == 1) { //cookieの値が1であればキャラクターを進化させる
-        img.src = "image/shinka.png"; //進化画像を配置
-    }
+    if (document.cookie == 0) {
+        img.src = "image/1.png"
+    };
+    if (document.cookie >= -1) {
+        img.src = "image/3.png"
+    };
+    if (document.cookie <= 1) {
+        img.src = "image/2.png"
+    };
 }
-setInterval('clock()', 1000); //clock(時計)を1秒間に1回実行する
+setInterval('clock()', 1000); //clockを1秒間に1回実行する
 
-//ボタン作成
-var img_2 = document.getElementById("botan_place") //画像読み込み
-img_2.src = "image/botan.png"; //画像配置
-
-botan_place.onclick = function () { //ボタンを押した処理
+//ボタン
+var botan = document.getElementById("botan_place");
+botan.src = "image/botan.png";
+botan_place.onclick = function () {
     location.replace('http://mayumutsumutsu.github.io/watch.html');
-    //計測画面に移動
 }
 
-//ここからwatch.js
 var select_Hour = document.getElementById("select_Hour");
 //HTMLのselect_Hourで選ばれた数字を入れる為の変数
 var selectMin = document.getElementById("select_Min");
@@ -72,17 +48,11 @@ var saveHour = 0;
 //起床時間の変数
 var saveMin = 0;
 var alarm = document.getElementById("alarm");
-//ジャイロの値を入れる変数
-var alpha = 0;
-var beta = 0;
-var gamma = 0;
-var count = 0; //illuminanceが0になった時にカウントされる関数(0を書かないとNaN表記)
 
 function save() { //起床時間をセットする関数
     saveHour = Number(select_Hour.value); //起床時間をsaveHourに格納
     saveMin = Number(select_Min.value); //起床時間をsaveMinrに格納
     alarm.load(); //音を読み込む
-    console.log(saveHour, ":", saveMin, "に保存"); //確認用
     alert("保存できました!"); //アラートで表示
 };
 
@@ -107,9 +77,7 @@ function sensor() { //環境光センサーを使う関数
         }
     }
 }
-
 setInterval('sensor()', 1000); //環境光センサーを1秒に1回回す
-
 
 function ring() { //音を鳴らす関数
     var now_ring = new Date(); //現在時刻を取得する変数
@@ -118,31 +86,28 @@ function ring() { //音を鳴らす関数
     if (Hour_ring == saveHour && Min_ring == saveMin) {
         //現在時刻が選択時刻と同じであれば
         alarm.play(); //音を再生する
-        console.log("alarm"); //確認用
         log.style.display = "block"; //watch.htmlのlog.style.displayを表示
     }
 };
 setInterval('ring()', 1000); //音を再生する関数を1秒に1回回す
 
-function stop() { //音を止める関数
+function stop() {
     alarm.pause(); //音を止める
     alarm.currentTime = 0; //音源を初期の位置に戻す
-    console.log("stop click"); //確認用
-    if (count <= 10) { //count(暗い時間)が1以上であれば
-        score++; //scoreに足す
-        document.cookie = score; //scoreの値をcookieに保存する
-    }
-    if (count > 10) { //count(暗い時間)が1以上であれば
-        score--; //scoreに足す
-        document.cookie = score; //scoreの値をcookieに保存する
-    }
+    if (count <= 0) {
+        score--;
+        document.cookie = score;
+    };
+    if (count >= 0) {
+        score++;
+        document.cookie = score;
+    };
     ring = function () {
         return false; //処理を止める
     };
 };
 
 function displayDate() {
-    //ジャイロセンサー値表示
     var txt = document.getElementById("txt"); //html内のtxtに変数を入れる
     txt.innerHTML = count;
     
@@ -154,6 +119,6 @@ function displayDate() {
 };
 
 function re() {
-    location.replace('http://mayumutsumutsu.github.io/index.html');
+    location.replace('http://mayumutsumutsu.github.io/home.html');
     //ホーム画面に戻る
 };
