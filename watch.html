@@ -3,14 +3,12 @@
 
 <head>
     <meta charset="utf-8">
-    <!--日本語を使用する-->
+    <!--        日本語使用-->
     <title>watch</title>
-    <!--タイトルを設定する-->
 </head>
 
 <body>
     <select id="select_Hour">
-        <!--select idタグを制作(時間を選択)-->
         <option value="0">0</option>
         <option value="1">1</option>
         <option value="2">2</option>
@@ -36,11 +34,10 @@
         <option value="22">22</option>
         <option value="23">23</option>
     </select>時
+    <!--    時間選択-->
 
     <br>
-
     <select id="select_Min">
-        <!--select idタグを制作(分を選択)-->
         <option value="0">0</option>
         <option value="1">1</option>
         <option value="2">2</option>
@@ -102,41 +99,50 @@
         <option value="58">58</option>
         <option value="59">59</option>
     </select>分
+    <!--    分選択-->
 
     <br>
 
     <input type="button" value="保存" onclick="save();sensor();displayDate();">
-    <!--保存ボタン作成　押すとsave(時間の保存)、sensor(環境光センサー)が実行-->
+    <!--    保存ボタン作成　押すとfunction save()が実行-->
+    <!--    onclickで複数実行は;区切り-->
 
     <audio src=alarm.mp3 id="alarm"></audio>
-    <!--アラームの音を読み込む-->
+    <!--    アラームの音を読み込む-->
 
     <div id="log" style="display: none;">
-        起きる時間です!!
-        <br>
+        時間になった
         <input type="button" value="止める" onclick="stop()">
     </div>
-    <!--アラームが鳴ったら止めるボタンを作成-->
+    <!--    アラームが鳴ったら表示されるボタン作成-->
+
+    <br>
+
+    <!--    <div id="txt">加速度を表示</div>-->
+
+    <br>
+
+    <input type="button" value="戻る" onclick="re()">
+    <!--    index.htmlに戻る-->
 
     <br>
     <br>
     
-    <input type="button" value="ホームに戻る" onclick="re()">
-    <!--index.htmlに戻る-->
     <br>
     <p>Current light intensity is <b id="value">unknown</b>.</p>
     <br>
-    <div id="txt2">真っ暗になった時間表示</div>
-
+    <div id="txt">count</div>
+    <div id="txt2">score</div>
+    
     <!--    ここから下書かないとエラー-->
     <img id="image_place" />
     <div id="text-button">
         <p id="text">キャラクターをクリック</p>
     </div>
     <img id="botan_place" />
-    
-    <div id="test">テスト</div>
 
 </body>
 
-<script src="index.js"></script></html>
+<script src="index.js"></script>
+
+</html>
