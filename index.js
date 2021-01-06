@@ -1,46 +1,52 @@
 var score = 0;
-var count = 0;
+console.log("scoreは" + 0);
+console.log("aaa");
+
+var img = document.getElementById("image_place");
+//img変数にimage_placeを設定
 
 function set(num) { //setオブジェクトでnumを格納
     // 桁数が1桁だったら先頭に0を加えて2桁に調整する
-    var ret; //ret関数を定義
+    var ret; //変数を定義
     if (num < 10) { //set(num)の数字(HourとMinの価)が10以下の場合
         ret = "0" + num; //0をつけて表示(00:01など)
     } else {
         ret = num; //10以上であればそのまま表示
     }
-    return ret; //ret関数を返す
+    return ret; //retを返す
 }
 
-var img = document.getElementById("image_place")
-//img関数にimage_placeを設定
-//キャラクター画像設定
-
-function clock() {
+function clock() { //時計を作る関数
     var now = new Date(); //現在日時の取得
     var Hour = set(now.getHours()); // 時間をnowHourに入れる
     var Min = set(now.getMinutes()); // 分をnowMinに入れる
-    var time = Hour + ":" + Min; //現在時刻を表示する変数 
-
-    if (document.cookie == 0) {
-        img.src = "image/1.png"
-    };
-    if (document.cookie >= -1) {
-        img.src = "image/3.png"
-    };
-    if (document.cookie <= 1) {
-        img.src = "image/2.png"
-    };
+    var char = Hour + ":" + Min; //現在時刻を表示する変数
+    console.log("現在時刻は" + char);
+    if (Hour >= 7 && Hour <= 23 && score == 0 || score == 1) {
+        console.log("第1段階");
+        img.src = "image/1.png"; //キャラクター画像を設定
+    }
+    if (Hour >= 7 && Hour <= 23 && score == 2) {
+        console.log("第2段階");
+        img.src = "image/2.png"; //キャラクター画像を設定
+    }
+    if (Hour >= 7 && Hour <= 23 && score == -1) {
+        console.log("第3段階");
+        img.src = "image/3.png"; //キャラクター画像を設定
+    }
 }
-setInterval('clock()', 1000); //clockを1秒間に1回実行する
+setInterval('clock()', 1000); //関数を1秒間に1回実行する
 
-//ボタン
-var botan = document.getElementById("botan_place");
-botan.src = "image/botan.png";
-botan_place.onclick = function () {
+//ボタン作成
+var img_2 = document.getElementById("botan_place") //画像読み込み
+img_2.src = "image/botan.png"; //画像配置
+
+botan_place.onclick = function () { //ボタンを押した処理
     location.replace('http://mayumutsumutsu.github.io/watch.html');
+    //計測画面に移動
 }
 
+//watch.html
 var select_Hour = document.getElementById("select_Hour");
 //HTMLのselect_Hourで選ばれた数字を入れる為の変数
 var selectMin = document.getElementById("select_Min");
@@ -48,15 +54,17 @@ var saveHour = 0;
 //起床時間の変数
 var saveMin = 0;
 var alarm = document.getElementById("alarm");
+var count = 0; //illuminanceが0になった時にカウントされる関数(0を書かないとNaN表記)
 
 function save() { //起床時間をセットする関数
     saveHour = Number(select_Hour.value); //起床時間をsaveHourに格納
     saveMin = Number(select_Min.value); //起床時間をsaveMinrに格納
     alarm.load(); //音を読み込む
     alert("保存できました!"); //アラートで表示
-};
+}
 
-function sensor() { //環境光センサーを使う関数
+function sensor() {
+    //環境光センサー関数
     function update(illuminance) { //update関数は毎フレーム実行＆illuminanceは変数
         console.log("環境光センサー"); //確認用
         document.getElementById("value").innerHTML = illuminance + " lux"; //明るさの文字列を表示
@@ -88,37 +96,32 @@ function ring() { //音を鳴らす関数
         alarm.play(); //音を再生する
         log.style.display = "block"; //watch.htmlのlog.style.displayを表示
     }
-};
+}
 setInterval('ring()', 1000); //音を再生する関数を1秒に1回回す
 
-function stop() {
+function stop() { //音を止める関数
     alarm.pause(); //音を止める
     alarm.currentTime = 0; //音源を初期の位置に戻す
-    if (count <= 0) {
-        score--;
-        document.cookie = score;
-    };
-    if (count >= 0) {
+    if(count > 0){
         score++;
         document.cookie = score;
-    };
+    }
     ring = function () {
         return false; //処理を止める
-    };
-};
+    }
+}
 
-function displayDate() {
-    var txt = document.getElementById("txt"); //html内のtxtに変数を入れる
-    txt.innerHTML = count;
-    
-    var txt2 = document.getElementById("txt2"); //html内のtxtに変数を入れる
-    txt2.innerHTML = score;
+function displayData(){
+    var txt = document.getElementById("txt2");
+    txt2.innerHTML = count;
 
     setInterval('displayDate()', 10000); //displayDataを10秒間に1回動かす
     //1秒間に1回だとプログラムが重くなる
-};
+}
 
-function re() {
-    location.replace('http://mayumutsumutsu.github.io/home.html');
-    //ホーム画面に戻る
-};
+//test
+function test() {
+    console.log("押した");
+    score++;
+    document.cookie = score;
+}
