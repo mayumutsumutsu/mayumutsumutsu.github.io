@@ -130,10 +130,10 @@ function sensor() {
     function update(illuminance) { //update関数は毎フレーム実行＆illuminanceは変数
         console.log("環境光センサー"); //確認用
         document.getElementById("value").innerHTML = illuminance + " lux"; //明るさの文字列を表示
-        if (illuminance == 0) { //明るさが0であれば
-            count++; //カウントする
-            //ここだけだと毎秒実行されない
-        }
+        //        if (illuminance == 0) { //明るさが0であれば
+        //            count++; //カウントする
+        //            //ここだけだと毎秒実行されない
+        //        }
     }
     if ("AmbientLightSensor" in window) { //もし端末が"AmbientLightSensor"に対応していれば
         try {
@@ -180,7 +180,7 @@ function displayData() {
     var txt = document.getElementById("txt2");
     txt2.innerHTML = count;
 
-    setInterval('displayDate()', 10000); //displayDataを10秒間に1回動かす
+    setInterval('displayData()', 10000); //displayDataを10秒間に1回動かす
     //1秒間に1回だとプログラムが重くなる
 }
 
