@@ -25,14 +25,76 @@ function clock() { //時計を作る関数
     if (Hour >= 7 && Hour <= 23 && score == 0 || score == 1) {
         console.log("第1段階");
         img.src = "image/1.png"; //キャラクター画像を設定
+        image_place.onclick = function () { //クリックされた時の変数
+            img.src = "image/1.1.png"; //キャラクター画像を設定
+            random = Math.floor(Math.random() * 5);
+            //1～5までの数字をランダムに生成(Math.floorで小数点以下は切り捨て)
+            if (random == 0) document.getElementById("text").innerHTML = "寝る前の飲み物には白湯がベスト!";
+            if (random == 1) document.getElementById("text").innerHTML = "夜ご飯は寝る3時間前に済ませておく事が理想だよ♪";
+            if (random == 2) document.getElementById("text").innerHTML = "覚醒効果のあるカフェインは寝る前には要注意!";
+            if (random == 3) document.getElementById("text").innerHTML = "お風呂の温度は40℃前後が理想的♪身体が温まるよ";
+            if (random == 4) document.getElementById("text").innerHTML = "ブルーライトは睡眠の天敵!寝る1時間前にはなるべく見ない様に!";
+        }
     }
     if (Hour >= 7 && Hour <= 23 && score == 2) {
         console.log("第2段階");
         img.src = "image/2.png"; //キャラクター画像を設定
+        image_place.onclick = function () { //クリックされた時の変数
+            img.src = "image/2.1.png"; //キャラクター画像を設定
+            random = Math.floor(Math.random() * 5);
+            //1～5までの数字をランダムに生成(Math.floorで小数点以下は切り捨て)
+            if (random == 0) document.getElementById("text").innerHTML = "寝る前の飲み物には白湯がベスト!";
+            if (random == 1) document.getElementById("text").innerHTML = "夜ご飯は寝る3時間前に済ませておく事が理想だよ♪";
+            if (random == 2) document.getElementById("text").innerHTML = "覚醒効果のあるカフェインは寝る前には要注意!";
+            if (random == 3) document.getElementById("text").innerHTML = "お風呂の温度は40℃前後が理想的♪身体が温まるよ";
+            if (random == 4) document.getElementById("text").innerHTML = "ブルーライトは睡眠の天敵!寝る1時間前にはなるべく見ない様に!";
+        }
     }
     if (Hour >= 7 && Hour <= 23 && score == -1) {
         console.log("第3段階");
         img.src = "image/3.png"; //キャラクター画像を設定
+        image_place.onclick = function () { //クリックされた時の変数
+            img.src = "image/3.1.png"; //キャラクター画像を設定
+            random = Math.floor(Math.random() * 5);
+            //1～5までの数字をランダムに生成(Math.floorで小数点以下は切り捨て)
+            if (random == 0) document.getElementById("text").innerHTML = "寝る前の飲み物には白湯がベスト!";
+            if (random == 1) document.getElementById("text").innerHTML = "夜ご飯は寝る3時間前に済ませておく事が理想だよ♪";
+            if (random == 2) document.getElementById("text").innerHTML = "覚醒効果のあるカフェインは寝る前には要注意!";
+            if (random == 3) document.getElementById("text").innerHTML = "お風呂の温度は40℃前後が理想的♪身体が温まるよ";
+            if (random == 4) document.getElementById("text").innerHTML = "ブルーライトは睡眠の天敵!寝る1時間前にはなるべく見ない様に!";
+        }
+    }
+    if (Hour >= 7 && Hour <= 23 && score == 3) {
+        console.log("第4段階");
+        img.src = "image/4.png"; //キャラクター画像を設定
+        image_place.onclick = function () { //クリックされた時の変数
+            img.src = "image/4.1.png"; //キャラクター画像を設定
+            random = Math.floor(Math.random() * 5);
+            //1～5までの数字をランダムに生成(Math.floorで小数点以下は切り捨て)
+            if (random == 0) document.getElementById("text").innerHTML = "寝る前の飲み物には白湯がベスト!";
+            if (random == 1) document.getElementById("text").innerHTML = "夜ご飯は寝る3時間前に済ませておく事が理想だよ♪";
+            if (random == 2) document.getElementById("text").innerHTML = "覚醒効果のあるカフェインは寝る前には要注意!";
+            if (random == 3) document.getElementById("text").innerHTML = "お風呂の温度は40℃前後が理想的♪身体が温まるよ";
+            if (random == 4) document.getElementById("text").innerHTML = "ブルーライトは睡眠の天敵!寝る1時間前にはなるべく見ない様に!";
+        }
+    }
+    if (Hour >= 7 && Hour <= 23 && score == 4) {
+        console.log("第5段階");
+        img.src = "image/5.png"; //キャラクター画像を設定
+        image_place.onclick = function () { //クリックされた時の変数
+            img.src = "image/5.1.png"; //キャラクター画像を設定
+            random = Math.floor(Math.random() * 5);
+            //1～5までの数字をランダムに生成(Math.floorで小数点以下は切り捨て)
+            if (random == 0) document.getElementById("text").innerHTML = "寝る前の飲み物には白湯がベスト!";
+            if (random == 1) document.getElementById("text").innerHTML = "夜ご飯は寝る3時間前に済ませておく事が理想だよ♪";
+            if (random == 2) document.getElementById("text").innerHTML = "覚醒効果のあるカフェインは寝る前には要注意!";
+            if (random == 3) document.getElementById("text").innerHTML = "お風呂の温度は40℃前後が理想的♪身体が温まるよ";
+            if (random == 4) document.getElementById("text").innerHTML = "ブルーライトは睡眠の天敵!寝る1時間前にはなるべく見ない様に!";
+        }
+    }
+    if (Hour < 7 && Hour > 23) {
+        console.log("睡眠");
+        document.getElementById("text").innerHTML = "Zzz…";
     }
 }
 setInterval('clock()', 1000); //関数を1秒間に1回実行する
@@ -78,6 +140,9 @@ function sensor() {
             var sensor = new AmbientLightSensor(); //関数を宣言する
             sensor.addEventListener("reading", function (event) { //センサーの値を読み取る
                 update(sensor.illuminance); //明るさを毎フレーム実行
+                if (illuminance == 0) { //明るさが0であれば
+                    count++; //カウントする
+                }
             });
             sensor.start();
         } catch (e) { //センサーが無かったら
@@ -102,7 +167,7 @@ setInterval('ring()', 1000); //音を再生する関数を1秒に1回回す
 function stop() { //音を止める関数
     alarm.pause(); //音を止める
     alarm.currentTime = 0; //音源を初期の位置に戻す
-    if(count > 0){
+    if (count > 0) {
         score++;
         document.cookie = score;
     }
@@ -111,13 +176,18 @@ function stop() { //音を止める関数
     }
 }
 
-function displayData(){
+function displayData() {
     var txt = document.getElementById("txt2");
     txt2.innerHTML = count;
 
     setInterval('displayDate()', 10000); //displayDataを10秒間に1回動かす
     //1秒間に1回だとプログラムが重くなる
 }
+
+function re() {
+    location.replace('http://mayumutsumutsu.github.io/home.html');
+    //ホーム画面に戻る関数
+};
 
 //test
 function test() {
