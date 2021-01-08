@@ -157,6 +157,9 @@ function save() { //起床時間をセットする関数
 function sensor() {
     function update(illuminance) {
         document.getElementById("value").innerHTML = illuminance + " lux";
+        if (illuminance == 0) {
+            count++;
+        }
     }
 
     if ("AmbientLightSensor" in window) {
@@ -164,12 +167,14 @@ function sensor() {
             var sensor = new AmbientLightSensor();
             sensor.addEventListener("reading", function (event) {
                 update(sensor.illuminance);
-                if(illuminance == 0){
+                document.getElementById("value2").innerHTML = illuminance + " lux";
+                //新しいlux
+                if (illuminance == 0) {
                     count++;
                 }
             });
             sensor.start();
-            
+
         } catch (e) {
             console.error(e);
         }
