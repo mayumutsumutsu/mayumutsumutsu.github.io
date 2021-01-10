@@ -125,69 +125,48 @@ function save() { //起床時間をセットする関数
     alert("保存できました!"); //アラートで表示
 }
 
-//function sensor() {
-//    //環境光センサー関数
-//    function update(illuminance) { //update関数は毎フレーム実行＆illuminanceは変数
-//        console.log("環境光センサー"); //確認用
-//        console.log(illuminance + "lux" + "a");
-//        //document.getElementById("value").innerHTML = illuminance + " lux"; //明るさの文字列を表示
-//        //        if (illuminance == 0) { //明るさが0であれば
-//        //            count++; //カウントする
-//        //            //ここだけだと毎秒実行されない
-//        //        }
-//    }
-//    if ("AmbientLightSensor" in window) { //もし端末が"AmbientLightSensor"に対応していれば
-//        try {
-//            var sensor = new AmbientLightSensor(); //関数を宣言する
-//            sensor.addEventListener("reading", function (event) { //センサーの値を読み取る
-//                update(sensor.illuminance); //明るさを毎フレーム実行
-//                console.log(illuminance + "lux" + "b");
-//                if (illuminance == 0) { //明るさが0であれば
-//                    count++; //カウントする
-//                }
-//            });
-//            sensor.start();
-//        } catch (e) { //センサーが無かったら
-//            console.error(e); //エラー
-//        }
-//    }
-//}
-//setInterval('sensor()', 1000); //環境光センサーを1秒に1回回す
-
 function sensor() {
-    function update(illuminance) {
-        document.getElementById("value").innerHTML = illuminance + " lux";
-        if (illuminance == 0) {
-            count++;
-        }
-    }
+    //環境光センサー関数
+    function update(illuminance) { //update関数は毎フレーム実行＆illuminanceは変数
+        console.log("環境光センサー"); //確認用
+        console.log(illuminance + "lux" + "a");
 
-    if ("AmbientLightSensor" in window) {
+        if (illuminance == 0) {
+            document.getElementById("value").innerHTML = illuminance + " lux";
+            count++;
+        } else {
+            document.getElementById("value").innerHTML = illuminance + " lux★"
+        }
+
+        //document.getElementById("value").innerHTML = illuminance + " lux"; //明るさの文字列を表示
+        //        if (illuminance == 0) { //明るさが0であれば
+        //            count++; //カウントする
+        //            //ここだけだと毎秒実行されない
+        //        }
+    }
+    if ("AmbientLightSensor" in window) { //もし端末が"AmbientLightSensor"に対応していれば
         try {
-            var sensor = new AmbientLightSensor();
-            sensor.addEventListener("reading", function (event) {
-                update(sensor.illuminance);
-                document.getElementById("value2").innerHTML = illuminance + " lux";
-                //新しいlux
+            var sensor = new AmbientLightSensor(); //関数を宣言する
+            sensor.addEventListener("reading", function (event) { //センサーの値を読み取る
+                update(sensor.illuminance); //明るさを毎フレーム実行
+                console.log(illuminance + "lux" + "b");
+                //                if (illuminance == 0) { //明るさが0であれば
+                //                    count++; //カウントする
+                //                }
                 if (illuminance == 0) {
+                    document.getElementById("value").innerHTML = illuminance + " lux";
                     count++;
+                } else {
+                    document.getElementById("value").innerHTML = illuminance + " lux★"
                 }
             });
             sensor.start();
-
-        } catch (e) {
-            console.error(e);
+        } catch (e) { //センサーが無かったら
+            console.error(e); //エラー
         }
-    }
-    if ("ondevicelight" in window) {
-        function onUpdateDeviceLight(event) {
-            update(event.value);
-        }
-
-        window.addEventListener("devicelight", onUpdateDeviceLight);
     }
 }
-setInterval('sensor()', 1000);
+setInterval('sensor()', 1000); //環境光センサーを1秒に1回回す
 
 function ring() { //音を鳴らす関数
     var now_ring = new Date(); //現在時刻を取得する変数
