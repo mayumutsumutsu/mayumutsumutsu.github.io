@@ -127,10 +127,8 @@ function save() { //起床時間をセットする関数
 
 function sensor() {
     //環境光センサー関数
-    function update(illuminance) { //update関数は毎フレーム実行＆illuminanceは変数
-        console.log("環境光センサー"); //確認用
-        console.log(illuminance + "lux" + "a");
-
+    function update(illuminance) {
+        document.getElementById("value").innerHTML = illuminance + " lux";
         if (illuminance == 0) {
             document.getElementById("value").innerHTML = illuminance + " lux";
             count++;
@@ -138,33 +136,33 @@ function sensor() {
             document.getElementById("value").innerHTML = illuminance + " lux★"
         }
 
-        //document.getElementById("value").innerHTML = illuminance + " lux"; //明るさの文字列を表示
-        //        if (illuminance == 0) { //明るさが0であれば
-        //            count++; //カウントする
-        //            //ここだけだと毎秒実行されない
-        //        }
     }
-    if ("AmbientLightSensor" in window) { //もし端末が"AmbientLightSensor"に対応していれば
+
+    if ("AmbientLightSensor" in window) {
         try {
-            var sensor = new AmbientLightSensor(); //関数を宣言する
-            sensor.addEventListener("reading", function (event) { //センサーの値を読み取る
-                update(sensor.illuminance); //明るさを毎フレーム実行
-                console.log(illuminance + "lux" + "b");
-                //                if (illuminance == 0) { //明るさが0であれば
-                //                    count++; //カウントする
-                //                }
+            var sensor = new AmbientLightSensor();
+            sensor.addEventListener("reading", function (event) {
+                update(sensor.illuminance);
                 if (illuminance == 0) {
                     document.getElementById("value").innerHTML = illuminance + " lux";
                     count++;
                 } else {
                     document.getElementById("value").innerHTML = illuminance + " lux★"
                 }
+
             });
             sensor.start();
-        } catch (e) { //センサーが無かったら
-            console.error(e); //エラー
+
+        } catch (e) {
+            console.error(e);
         }
     }
+    if ("ondevicelight" in window) {
+        function onUpdateDeviceLight(event) {
+            update(event.value);
+        }
+    }
+    window.addEventListener("devicelight", onUpdateDeviceLight);
 }
 setInterval('sensor()', 1000); //環境光センサーを1秒に1回回す
 
@@ -193,9 +191,12 @@ function stop() { //音を止める関数
 }
 
 function displayData() {
-    var txt = document.getElementById("txt2");
+    var txt2 = document.getElementById("txt2");
     txt2.innerHTML = count;
     console.log("count中");
+    
+    var txt3 = document.getElementById("txt3");
+    txt3.innerHTML = score;
 
     setInterval('displayData()', 10000); //displayDataを10秒間に1回動かす
     //1秒間に1回だとプログラムが重くなる
