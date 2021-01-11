@@ -183,7 +183,7 @@ setInterval('ring()', 1000); //音を再生する関数を1秒に1回回す
 function stop() { //音を止める関数
     alarm.pause(); //音を止める
     alarm.currentTime = 0; //音源を初期の位置に戻す
-    if (count > 0) {
+    if (count > 10) {
         score++;
         document.cookie = score;
     }
@@ -196,6 +196,9 @@ function displayData() {
     var txt = document.getElementById("txt2");
     txt2.innerHTML = count;
     console.log("count中");
+    
+    var txt2 = document.getElementById("txt3");
+    txt2.innerHTML = score;
 
     setInterval('displayData()', 10000); //displayDataを10秒間に1回動かす
     //1秒間に1回だとプログラムが重くなる
