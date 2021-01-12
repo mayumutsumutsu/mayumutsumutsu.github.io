@@ -230,3 +230,6 @@ function test() {
 if (score === undefined) {
   score = 0;
 }
+if (document.cookie === NaN){
+    document.cookie = 0;
+}
