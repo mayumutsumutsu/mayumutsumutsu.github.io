@@ -227,6 +227,6 @@ function test() {
     console.log(document.cookie);
 }
 
-if (score === undefined) {
-  score = 0;
-}
+//if (score === undefined) {
+//  score = 0;
+//}
