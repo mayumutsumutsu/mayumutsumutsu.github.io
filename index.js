@@ -1,7 +1,7 @@
 //var score = 0; //最初の値は0
 //var score = document.cookie; //cookieの値を入れる
 
-var score;
+var score = 0;
 
 //if (score === undefined) {
 //  score = 0;
