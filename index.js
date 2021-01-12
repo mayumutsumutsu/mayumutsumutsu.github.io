@@ -30,7 +30,7 @@ function clock() { //時計を作る関数
     var Min = set(now.getMinutes()); // 分をnowMinに入れる
     var char = Hour + ":" + Min; //現在時刻を表示する変数
     console.log("現在時刻は" + char);
-    if (Hour >= 7 && Hour <= 23 && document.cookie  == 0 || document.cookie  == 1) {
+    if (Hour >= 7 && Hour <= 23 && document.cookie == 0 || document.cookie == 1) {
         console.log("第1段階");
         img.src = "image/1.png"; //キャラクター画像を設定
         image_place.onclick = function () { //クリックされた時の変数
@@ -44,7 +44,7 @@ function clock() { //時計を作る関数
             if (random == 4) document.getElementById("text").innerHTML = "ブルーライトは睡眠の天敵!寝る1時間前にはなるべく見ない様に!";
         }
     }
-    if (Hour >= 7 && Hour <= 23 && document.cookie  == 2) {
+    if (Hour >= 7 && Hour <= 23 && document.cookie == 2) {
         console.log("第2段階");
         img.src = "image/2.png"; //キャラクター画像を設定
         image_place.onclick = function () { //クリックされた時の変数
@@ -58,7 +58,7 @@ function clock() { //時計を作る関数
             if (random == 4) document.getElementById("text").innerHTML = "ブルーライトは睡眠の天敵!寝る1時間前にはなるべく見ない様に!";
         }
     }
-    if (Hour >= 7 && Hour <= 23 && document.cookie  == -1) {
+    if (Hour >= 7 && Hour <= 23 && document.cookie == -1) {
         console.log("第3段階");
         img.src = "image/3.png"; //キャラクター画像を設定
         image_place.onclick = function () { //クリックされた時の変数
@@ -72,7 +72,7 @@ function clock() { //時計を作る関数
             if (random == 4) document.getElementById("text").innerHTML = "ブルーライトは睡眠の天敵!寝る1時間前にはなるべく見ない様に!";
         }
     }
-    if (Hour >= 7 && Hour <= 23 && document.cookie  == 3) {
+    if (Hour >= 7 && Hour <= 23 && document.cookie == 3) {
         console.log("第4段階");
         img.src = "image/4.png"; //キャラクター画像を設定
         image_place.onclick = function () { //クリックされた時の変数
@@ -86,7 +86,7 @@ function clock() { //時計を作る関数
             if (random == 4) document.getElementById("text").innerHTML = "ブルーライトは睡眠の天敵!寝る1時間前にはなるべく見ない様に!";
         }
     }
-    if (Hour >= 7 && Hour <= 23 && document.cookie  == 4) {
+    if (Hour >= 7 && Hour <= 23 && document.cookie == 4) {
         console.log("第5段階");
         img.src = "image/5.png"; //キャラクター画像を設定
         image_place.onclick = function () { //クリックされた時の変数
@@ -223,13 +223,14 @@ function test() {
     console.log("押した");
     score++;
     document.cookie = score;
-    
-    console.log(document.cookie);
 }
 
 if (score === undefined) {
-  score = 0;
+    score = 0;
 }
-if (document.cookie === NaN){
+if (document.cookie === NaN) {
     document.cookie = 0;
 }
+
+var txt4 = document.getElementById("txt4");
+txt4.innerHTML = score;
