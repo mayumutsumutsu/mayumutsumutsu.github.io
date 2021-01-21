@@ -93,11 +93,11 @@ function clock() { //時計を作る関数
             if (random == 4) document.getElementById("text").innerHTML = "ブルーライトは睡眠の天敵!寝る1時間前にはなるべく見ない様に!";
         }
     }
-    else {
-        console.log("睡眠");
-        img.src = "image/sleep.png"; //キャラクター画像を設定
-        document.getElementById("text").innerHTML = "Zzz…";
-    }
+    //else {
+       // console.log("睡眠");
+        //img.src = "image/sleep.png"; //キャラクター画像を設定
+        //document.getElementById("text").innerHTML = "Zzz…";
+    //}
 }
 setInterval('clock()', 1000); //関数を1秒間に1回実行する
 
