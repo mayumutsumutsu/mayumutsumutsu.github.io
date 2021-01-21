@@ -198,17 +198,17 @@ function stop() { //音を止める関数
     }
 }
 
-function displayData() {
-    var txt2 = document.getElementById("txt2");
-    txt2.innerHTML = count;
-    console.log("count中");
+//function displayData() {
+    //var txt2 = document.getElementById("txt2");
+    //txt2.innerHTML = count;
+    //console.log("count中");
 
-    var txt3 = document.getElementById("txt3");
-    txt3.innerHTML = score;
+    //var txt3 = document.getElementById("txt3");
+    //txt3.innerHTML = score;
 
-    setInterval('displayData()', 10000); //displayDataを10秒間に1回動かす
+    //setInterval('displayData()', 10000); //displayDataを10秒間に1回動かす
     //1秒間に1回だとプログラムが重くなる
-}
+//}
 
 function re() {
     location.replace('http://mayumutsumutsu.github.io/home.html');
